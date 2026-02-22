@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "CS Week 2026",
   description: "CS Week 2026 — Let the Games Begin!",
+  icons: {
+    icon: "/icon.png", // Reference the file in the /public directory
+  },
 };
 
 export default function RootLayout({

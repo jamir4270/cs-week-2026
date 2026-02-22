@@ -240,7 +240,7 @@ export default function Home() {
           {/* Centre content */}
           <div className="menu-container">
             <div className="title-wrapper">
-              <div className="title-sub">~ CS CLUB PRESENTS ~</div>
+              <div className="title-sub">~ CS CUBE PRESENTS ~</div>
               <h1 className="game-title">
                 <span className="title-cs">CS</span>
                 <span className="title-week">WEEK</span>
