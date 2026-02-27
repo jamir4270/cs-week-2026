@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 // ─── Floating particle config ───────────────────────────────────────────────
 const PARTICLES = [
@@ -155,11 +156,16 @@ const FULL_TEXT = "LET THE\nGAMES BEGIN!";
 type Screen = "menu" | "transition" | "game";
 
 export default function Home() {
+  const router = useRouter();
   const [screen, setScreen] = useState<Screen>("menu");
   const [menuExiting, setMenuExiting] = useState(false);
   const [btnPressed, setBtnPressed] = useState(false);
   const [displayText, setDisplayText] = useState("");
   const [showCelebration, setShowCelebration] = useState(false);
+
+  const handleClose = () => {
+    router.push("/goodbye");
+  };
 
   // Play button handler
   const handlePlay = () => {
@@ -330,6 +336,12 @@ export default function Home() {
                   <span key={i}>{c}</span>
                 ))}
               </div>
+            )}
+
+            {showCelebration && (
+              <button className="close-btn" onClick={handleClose}>
+                ⏻&nbsp; SHUT DOWN
+              </button>
             )}
           </div>
         </div>

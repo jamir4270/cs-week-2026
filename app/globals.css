@@ -751,3 +751,295 @@ body {
   animation: starField ease-in-out infinite;
   pointer-events: none;
 }
+
+/* ==========================================
+   CLOSE BUTTON (game screen)
+   ========================================== */
+
+@keyframes closeBtnGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 4px #000,
+      0 0 0 7px var(--mario-red),
+      0 0 22px var(--mario-red),
+      inset 0 0 10px rgba(229, 34, 34, 0.18);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px #000,
+      0 0 0 7px var(--orange-red),
+      0 0 32px var(--orange-red),
+      inset 0 0 16px rgba(194, 82, 38, 0.22);
+  }
+}
+
+.close-btn {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  color: #fff;
+  background: var(--mario-red);
+  border: none;
+  cursor: pointer;
+  padding: 0.8rem 2.5rem;
+  letter-spacing: 0.12em;
+  margin-top: 0.5rem;
+  animation:
+    slideUp 0.5s ease-out both,
+    closeBtnGlow 2s ease-in-out infinite;
+  box-shadow:
+    0 0 0 4px #000,
+    0 0 0 7px var(--mario-red),
+    0 0 22px var(--mario-red),
+    6px 6px 0 var(--dark-brown);
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.close-btn:hover {
+  background: var(--orange-red);
+  color: #fff;
+}
+
+/* ==========================================
+   SHUTDOWN SCREEN
+   ========================================== */
+
+@keyframes shutdownFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.shutdown-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  z-index: 10;
+}
+
+.shutdown-screen.shutdown-fade {
+  animation: shutdownFade 0.7s ease-in forwards;
+}
+
+.shutdown-text {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(0.6rem, 1.8vw, 1rem);
+  color: var(--mario-red);
+  letter-spacing: 0.12em;
+  text-shadow:
+    0 0 8px var(--mario-red),
+    0 0 20px var(--orange-red);
+  text-align: center;
+  padding: 0 2rem;
+}
+
+/* ==========================================
+   GOODBYE SCREEN
+   ========================================== */
+
+@keyframes goodbyeFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes goodbyeTitleGlow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 12px var(--mario-yellow),
+      0 0 30px var(--mario-yellow),
+      0 0 60px var(--orange-red),
+      4px 4px 0 #000;
+  }
+  50% {
+    text-shadow:
+      0 0 12px var(--cyan),
+      0 0 30px var(--cyan),
+      0 0 60px var(--mario-blue),
+      4px 4px 0 #000;
+  }
+}
+
+@keyframes countdownPulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 10px var(--cyan),
+      0 0 25px var(--cyan),
+      2px 2px 0 #000;
+  }
+  50% {
+    text-shadow:
+      0 0 18px var(--mario-yellow),
+      0 0 40px var(--mario-yellow),
+      2px 2px 0 #000;
+  }
+}
+
+@keyframes decoBounce {
+  0%,
+  100% {
+    transform: translateY(0px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+.goodbye-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 50%, #1c052c 0%, #080818 65%);
+}
+
+.goodbye-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  animation: goodbyeFadeIn 0.7s ease-out both;
+}
+
+.goodbye-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.goodbye-deco {
+  font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+  color: var(--mario-yellow);
+  letter-spacing: 0.6em;
+  filter: drop-shadow(0 0 8px var(--mario-yellow));
+  animation: decoBounce 1.8s ease-in-out infinite;
+}
+
+.goodbye-title {
+  font-size: clamp(1.6rem, 5vw, 3.2rem);
+  color: var(--mario-yellow);
+  letter-spacing: 0.12em;
+  animation: goodbyeTitleGlow 3s ease-in-out infinite;
+}
+
+/* Countdown box */
+.countdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 2.5rem 3rem;
+  border: 4px solid var(--cyan);
+  box-shadow:
+    0 0 0 4px #000,
+    0 0 0 8px var(--mario-yellow),
+    0 0 50px var(--cyan),
+    inset 0 0 30px rgba(103, 227, 223, 0.06);
+  background: rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.countdown-wrapper::before,
+.countdown-wrapper::after {
+  content: "◼ ◼ ◼";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--mario-yellow);
+  font-size: 0.75rem;
+  letter-spacing: 0.6em;
+  background: #080818;
+  padding: 0 0.6rem;
+}
+.countdown-wrapper::before {
+  top: -0.6em;
+}
+.countdown-wrapper::after {
+  bottom: -0.6em;
+}
+
+.countdown-label {
+  font-size: clamp(0.45rem, 1.2vw, 0.62rem);
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  animation: blink 2.5s ease-in-out infinite;
+  text-shadow: 0 0 10px var(--gold);
+}
+
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.countdown-value {
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  color: var(--cyan);
+  animation: countdownPulse 1s ease-in-out infinite;
+  min-width: 2.5ch;
+  text-align: center;
+}
+
+.countdown-key {
+  font-size: clamp(0.38rem, 1vw, 0.52rem);
+  color: var(--light-blue);
+  letter-spacing: 0.2em;
+  opacity: 0.75;
+}
+
+.countdown-sep {
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  color: var(--mario-yellow);
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 10px var(--mario-yellow);
+  animation: blink 1s step-start infinite;
+}
+
+.countdown-date {
+  font-size: clamp(0.42rem, 1.1vw, 0.58rem);
+  color: var(--mario-yellow);
+  letter-spacing: 0.2em;
+  opacity: 0.85;
+  text-shadow: 0 0 8px var(--mario-yellow);
+  margin-top: 0.4rem;
+}
+
+/* Footer */
+.goodbye-footer {
+  font-size: 0.48rem;
+  color: var(--light-blue);
+  opacity: 0.55;
+  letter-spacing: 0.12em;
+}
